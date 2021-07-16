@@ -24,9 +24,10 @@ def search(field, value):
     order=requests.args.get("order","id")
     
     if order=="asc":
-    	cursor.execute(f"select p.id, p.name, p.bought, p.sold, s.name from pet p, animal s, tag t, tags_pets tp where p.species=s.id and p.id=tp.pet and t.id=tp.tag and t.name='{value}' order by p.{oby}")#, (value)) pets=cursor.fetchall()
+    	cursor.execute(f"select p.id, p.name, p.bought, p.sold, s.name from pet p, animal s, tag t, tags_pets tp where p.species=s.id and p.id=tp.pet and t.id=tp.tag and t.name='{value}' order by p.{oby}")
     else:
-    	cursor.execute(f"select p.id, p.name, p.bought, p.sold, s.name from pet p, animal s, tag t, tags_pets tp where p.species=s.id and p.id=tp.pet and t.id=tp.tag and t.name='{value}' order by p.{oby} desc")#, (value)) pets=cursor.fetchall()
+    	cursor.execute(f"select p.id, p.name, p.bought, p.sold, s.name from pet p, animal s, tag t, tags_pets tp where p.species=s.id and p.id=tp.pet and t.id=tp.tag and t.name='{value}' order by p.{oby} desc")
+    pets=cursor.fetchall()
     return render_template('search.html', pets=pets, field=field, value=value, order="desc" if order=="asc" else "asc")
     
 
