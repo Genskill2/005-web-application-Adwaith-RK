@@ -25,8 +25,12 @@
   <div class="mb-3">
     <div class="form-check">
       {# TODO  Add sold checkbox here #}
-      <input type="checkbox" name="sold" id="sold" value="true"/>
-      <label class="form-check-label" for="sold" > Sold </label>
+      {%if sold%}
+      		<input type="checkbox" name="sold" id="sold" value="sold" checked>
+      {%else%}
+      		<input type="checkbox" name="sold" id="sold" value="sold">
+      {%endif%}
+      		<label class="form-check-label" for="sold" > Sold </label>
     </div>
   </div>
 
