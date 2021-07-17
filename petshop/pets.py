@@ -1,24 +1,24 @@
 import datetime
 	
-	from flask import Blueprint
-	from flask import render_template, request, redirect, url_for, jsonify
-	from flask import g
+from flask import Blueprint
+from flask import render_template, request, redirect, url_for, jsonify
+from flask import g
 	
-	from . import db
+from . import db
 	
-	bp = Blueprint("pets", "pets", url_prefix="")
-	
-	
-	def format_date(d):
-	    if d:
-	        d = datetime.datetime.strptime(d, '%Y-%m-%d')
-	        v = d.strftime("%a - %b %d, %Y")
-	        return v
-	    else:
-	        return None
+bp = Blueprint("pets", "pets", url_prefix="")
 	
 	
-	@bp.route("/search/<field>/<value>")
+def format_date(d):
+    if d:
+        d = datetime.datetime.strptime(d, '%Y-%m-%d')
+        v = d.strftime("%a - %b %d, %Y")
+        return v
+    else:
+        return None
+	
+	
+@bp.route("/search/<field>/<value>")
 	def search(field, value):
 	    # TBD
 	    conn = db.get_db()
